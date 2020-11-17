@@ -1,0 +1,22 @@
+{
+  "name": "cfc",
+  "version": "1.0.0",
+  "description": "cfc HTF",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harmeetsingh01/cfc.git"
+  },
+  "author": "Harmeet Singh, Rohan Pol",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harmeetsingh01/cfc/issues"
+  },
+  "homepage": "https://github.com/harmeetsingh01/cfc#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
