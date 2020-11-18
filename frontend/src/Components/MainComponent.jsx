@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {Component} from 'react';
+import HeaderComponent from './Users/HeaderComponent';
 
-export default function MainComponent() {
-    return (
-        <div>
-            <h1>Main Component</h1>
-        </div>
-    )
+class MainComponent extends React.Component {
+    render(){
+        return (
+            <div>
+                <HeaderComponent/>
+    
+            </div>
+        )
+    }
 }
+
+export default MainComponent
