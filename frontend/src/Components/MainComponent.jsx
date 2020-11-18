@@ -6,7 +6,6 @@ import Newsletter from './User/Aboutus/Newsletter';
 import Financials from './User/Aboutus/Financials';
 import OurHistory from './User/Aboutus/OurHistory';
 import Reviews from './User/Aboutus/Reviews';
-import Newsletter from './User/Aboutus/Newsletter';
 import Vision from './User/Aboutus/Vision';
 import Bloglist from './User/Blog/Bloglist';
 import Campaigns from './User/Campaigns/Campaigns';

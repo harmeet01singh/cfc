@@ -1,34 +1,34 @@
 var express = require('express');
-var fileRouter = express.Router();
-var Files = require('../models/files');
+var branchRouter = express.Router();
+var Branches = require('../models/branches');
 
-fileRouter.route('/')
+branchRouter.route('/')
     .get(( req, res, next) => {
-        Files.find({})
-        .then((letters) => {
+        Branches.find({})
+        .then((branches) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json(letters);
+            res.json(branches);
         }, (err) => next(err))
         .catch((err) => console.log(err));
     })
     .post(( req, res, next) => {
-        Files.create(req.body)
-        .then((letter) => {
-            console.log('Newsletter Created: ', letter)
+        Branches.create(req.body)
+        .then((branch) => {
+            console.log('Branch Created: ', branch)
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json(letter);
+            res.json(branch);
         }, (err) => next(err))
         .catch((err) => next(err));
     })
     .put(( req, res, next) => {
         res.statusCode = 401;
         res.setHeader('Content-Type', 'plain/text');
-        res.end('Put method not supported on /newsletter');
+        res.end('Put method not supported on /branches');
     })
     .delete(( req, res, next) => {
-        Files.remove({})
+        Branches.remove({})
         .then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
@@ -37,33 +37,30 @@ fileRouter.route('/')
         .catch((err) => next(err));
     });
 
-fileRouter.route('/:letterId')
+branchRouter.route('/:branchId')
     .get(( req, res, next) => {
-        Files.findOne(req.params.blogId)
-        .then((letter) => {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json(letter);
-        })
+        res.statusCode = 401;
+        res.setHeader('Content-Type', 'plain/text');
+        res.end('Get method not supported on individual branch');
     })
     .post(( req, res, next) => {
         res.statusCode = 401;
         res.setHeader('Content-Type', 'plain/text');
-        res.end('Post method not supported on individual letter');
+        res.end('Post method not supported on individual branch');
     })
     .put(( req, res, next) => {
-        Files.findByIdAndUpdate( req.params.blogId, {
+        Branches.findByIdAndUpdate( req.params.branchId, {
             $set: req.body
         }, { new: true})
-        .then((letter) => {
+        .then((branch) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json({ message: 'Newsletter Updated', letter: letter});
+            res.json({ message: 'Branch Updated', branch: branch});
         }, (err) => next(err))
         .catch((err) => next(err));
     })
     .delete(( req, res, next) => {
-        Files.findByIdAndRemove(req.params.blogId)
+        Branches.findByIdAndRemove(req.params.branchId)
         .then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
@@ -72,4 +69,4 @@ fileRouter.route('/:letterId')
         .catch((err) => next(err));
     });
 
-module.exports = fileRouter;
+module.exports = branchRouter;
