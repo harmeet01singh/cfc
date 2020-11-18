@@ -7,7 +7,6 @@ import {
 export default function Newsletter() {
     return (
         <div className="container">
-            <br></br>
             <Row>
                 <Col sm="4">
                     <Card body>
