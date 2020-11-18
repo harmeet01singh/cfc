@@ -9,6 +9,7 @@ import {
     DropdownMenu,
     DropdownItem
   } from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 export default function Header() {
     return (
@@ -20,22 +21,22 @@ export default function Header() {
                   About us
                 </DropdownToggle>
                 <DropdownMenu left>
-                  <DropdownItem href="#">
-                    Newletters
+                  <DropdownItem tag={Link} to="/aboutus/newsletters">
+                    Newsletter
                   </DropdownItem>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/aboutus/financials">
                     Finanicals
                   </DropdownItem>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/aboutus/branches">
                     Branches
                   </DropdownItem>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/aboutus/press">
                     Press Reviews
                   </DropdownItem>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/aboutus/history">
                     History
                   </DropdownItem>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/aboutus/views">
                     Vision
                   </DropdownItem>
                 </DropdownMenu>
@@ -45,10 +46,10 @@ export default function Header() {
                   Campaigns
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/campaigns">
                     Branch 1
                   </DropdownItem>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/campaigns">
                     Branch 2
                   </DropdownItem>
                 </DropdownMenu>
@@ -58,10 +59,10 @@ export default function Header() {
                   Events
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/events/upcoming">
                     Upcoming Events
                   </DropdownItem>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/aboutus/past">
                     Past Events
                   </DropdownItem>
                 </DropdownMenu>
@@ -71,31 +72,31 @@ export default function Header() {
                   Contribute
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/contribute/donate">
                     Donate
                   </DropdownItem>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/contribute/volunteer">
                     Volunteer
                   </DropdownItem>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/contribute/handin">
                     Hand In Donations
                   </DropdownItem>
-                  <DropdownItem href="#">
+                  <DropdownItem tag={Link} to="/contribute/help">
                     Ask For Help
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <NavLink href="#">Blog</NavLink>
+                <NavLink tag={Link} to="/blog">Blog</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Contact us</NavLink>
+                <NavLink tag={Link} to="/contactus">Contact us</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Register</NavLink>
+                <NavLink tag={Link} to="#">Register</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Log In</NavLink>
+                <NavLink tag={Link} to="#">Log In</NavLink>
               </NavItem>
             </Nav>
         </Navbar>
