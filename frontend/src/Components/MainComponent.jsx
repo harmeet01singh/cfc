@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Switch, Route, Redirect, withRouter, BrowserRouter } from 'react-router-dom';
 import Header from './User/Header';
+import Footer from './User/footer';
 import Branches from './User/Aboutus/Branches';
 import Newsletter from './User/Aboutus/Newsletter';
 import Financials from './User/Aboutus/Financials';
@@ -8,6 +9,7 @@ import OurHistory from './User/Aboutus/OurHistory';
 import Reviews from './User/Aboutus/Reviews';
 import Vision from './User/Aboutus/Vision';
 import Bloglist from './User/Blog/Bloglist';
+import Blogdetail from './User/Blog/BlogDetail';
 import Campaigns from './User/Campaigns/Campaigns';
 import Contact from './User/Contactus/Contact';
 import Donate from './User/Contribute/Donate';
@@ -31,6 +33,7 @@ class MainComponent extends React.Component {
                         <Route exact path="/aboutus/press" component={Reviews} />
                         <Route exact path="/aboutus/vision" component={Vision} />
                         <Route exact path="/blog" component={Bloglist} />
+                        <Route exact path="/blog/blogdet" component={Blogdetail} />
                         <Route exact path="/campaigns" component={Campaigns} />
                         <Route exact path="/contactus" component={Contact} />
                         <Route exact path="/contribute/donate" component={Donate} />
@@ -41,7 +44,7 @@ class MainComponent extends React.Component {
                         <Route exact path="/events/past" component={Past} />
                         
                     </Switch>
-                    {/*<Newsletter/>*/}
+                    <Footer/>
                 </div>
             </BrowserRouter>
         )

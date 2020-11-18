@@ -62,7 +62,7 @@ export default function Header() {
                   <DropdownItem tag={Link} to="/events/upcoming">
                     Upcoming Events
                   </DropdownItem>
-                  <DropdownItem tag={Link} to="/aboutus/past">
+                  <DropdownItem tag={Link} to="/events/past">
                     Past Events
                   </DropdownItem>
                 </DropdownMenu>
