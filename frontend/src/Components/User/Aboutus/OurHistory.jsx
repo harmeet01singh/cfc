@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function History() {
+export default function OurHistory() {
     return (
         <div>
             
