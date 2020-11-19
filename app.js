@@ -21,13 +21,12 @@ connect.then((db) => {
   console.log('Connected to server succesfully...')
 }, (err) => console.log(err));
 
-const letterRouter = require('./routes/newsletters');
-const finRouter = require('./routes/financials');
 const branchRouter = require('./routes/branches');
 const campRouter = require('./routes/campaigns');
 const eventRouter = require('./routes/events');
 const blogRouter = require('./routes/blogs');
-const donRouter = require('./routes/donations');
+const feedRouter = require('./routes/feedbacks');
+const fileRouter = require('./routes/newsletters');
 
 
 app.use(logger('dev'));
@@ -39,14 +38,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-// app.use('/', indexRouter);
-app.use('/newsletters', letterRouter);
-app.use('/financials', finRouter);
+app.use('/', indexRouter);
+app.use('/files', fileRouter);
 app.use('/branches', branchRouter);
 app.use('/campaigns', campRouter);
 app.use('/events', eventRouter);
 app.use('/blogs', blogRouter);
-app.use('/donations', donRouter)
+app.use('/feedbacks', feedRouter);
 // app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

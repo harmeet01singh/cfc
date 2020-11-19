@@ -1,25 +1,29 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const fileSchema = new Schema({
-    title: {
+const feedSchema = new Schema({
+    id: {
+        type: String,
+        default: ''
+    },
+    name: {
         type: String,
         required: true
     },
-    subtitle: {
+    email: {
         type: String,
         required: true
     },
-    type: {
+    contact: {
         type: String,
         required: true
     },
-    fileUrl: {
+    message: {
         type: String,
         required: true
     }
 });
 
-var Files = mongoose.model('File', fileSchema);
+var Feedbacks = mongoose.model('Feedback', feedSchema);
 
-module.exports = Files; 
+module.exports = Feedbacks; 

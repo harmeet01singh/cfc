@@ -1,10 +1,10 @@
 var express = require('express');
 var fileRouter = express.Router();
-var Files = require('../models/files');
+var Htfiles = require('../models/htffiles');
 
-fileRouter.route('/')
+fileRouter.route('/:type')
     .get(( req, res, next) => {
-        Files.find({})
+        Htfiles.find({ type: req.params.type})
         .then((letters) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
@@ -13,12 +13,16 @@ fileRouter.route('/')
         .catch((err) => console.log(err));
     })
     .post(( req, res, next) => {
-        Files.create(req.body)
-        .then((letter) => {
-            console.log('Newsletter Created: ', letter)
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json(letter);
+        Htfiles.create(req.body)
+        .then((file) => {
+            file.id = file._id;
+            file.save()
+            .then(file => {
+                console.log('Newsletter Created: ', file)
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(file);
+            })
         }, (err) => next(err))
         .catch((err) => next(err));
     })
@@ -28,7 +32,7 @@ fileRouter.route('/')
         res.end('Put method not supported on /newsletter');
     })
     .delete(( req, res, next) => {
-        Files.remove({})
+        Htfiles.remove({})
         .then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
@@ -37,13 +41,13 @@ fileRouter.route('/')
         .catch((err) => next(err));
     });
 
-fileRouter.route('/:letterId')
+fileRouter.route('/file/:fileId')
     .get(( req, res, next) => {
-        Files.findOne(req.params.blogId)
-        .then((letter) => {
+        Htfiles.findById(req.params.fileId)
+        .then((file) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json(letter);
+            res.json(file);
         })
     })
     .post(( req, res, next) => {
@@ -52,18 +56,18 @@ fileRouter.route('/:letterId')
         res.end('Post method not supported on individual letter');
     })
     .put(( req, res, next) => {
-        Files.findByIdAndUpdate( req.params.blogId, {
+        Htfiles.findByIdAndUpdate( req.params.fileId, {
             $set: req.body
         }, { new: true})
-        .then((letter) => {
+        .then((file) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json({ message: 'Newsletter Updated', letter: letter});
+            res.json(file);
         }, (err) => next(err))
         .catch((err) => next(err));
     })
     .delete(( req, res, next) => {
-        Files.findByIdAndRemove(req.params.blogId)
+        Htfiles.findByIdAndRemove(req.params.fileId)
         .then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');

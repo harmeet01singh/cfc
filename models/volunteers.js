@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const donateSchema = new Schema({
+const volSchema = new Schema({
     id: {
         type: String,
         default: ''
@@ -11,14 +11,6 @@ const donateSchema = new Schema({
         required: true
     },
     email: {
-        type: String,
-        required: true
-    },
-    amount: {
-        type: String,
-        required: true
-    },
-    pan: {
         type: String,
         required: true
     },
@@ -34,12 +26,16 @@ const donateSchema = new Schema({
         type: String,
         required: true
     },
-    method: {
+    type: {
+        type: String,
+        required: true
+    },
+    event: {
         type: String,
         required: true
     }
 });
 
-var Donations = mongoose.model('Donation', donateSchema);
+var Volunteers = mongoose.model('Volunteer', volSchema);
 
-module.exports = Donations; 
+module.exports = Volunteers; 

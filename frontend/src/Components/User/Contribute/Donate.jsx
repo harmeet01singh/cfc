@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default class Donate extends Component {
 
-    handleDonate = e => {
+    handleSubmit = e => {
         e.preventDefault();
         var data = {};
         for(let i = 0;i < e.target.length; i++){
@@ -25,7 +25,7 @@ export default class Donate extends Component {
                 <h3>Donate and Support us</h3>
                 </Col>
                 <br></br>
-                <Form method="post" onSubmit={this.handleDonate}>
+                <Form method="post" onSubmit={this.handleSubmit}>
                     <Row form>
                         <Col md={5}>
                         <FormGroup>
