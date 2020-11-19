@@ -16,6 +16,7 @@ export default function Header() {
         <div>
             <Navbar color="dark" dark expand="md">
             <Nav className="mr-auto" navbar>
+            {/*<div className="col-lg-8">*/}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   About us
@@ -62,7 +63,7 @@ export default function Header() {
                   <DropdownItem tag={Link} to="/events/upcoming">
                     Upcoming Events
                   </DropdownItem>
-                  <DropdownItem tag={Link} to="/aboutus/past">
+                  <DropdownItem tag={Link} to="/events/past">
                     Past Events
                   </DropdownItem>
                 </DropdownMenu>
@@ -92,12 +93,15 @@ export default function Header() {
               <NavItem>
                 <NavLink tag={Link} to="/contactus">Contact us</NavLink>
               </NavItem>
+              {/*</div>
+              <div className="col-lg-4">*/}
               <NavItem>
                 <NavLink tag={Link} to="#">Register</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} to="#">Log In</NavLink>
               </NavItem>
+              {/*</div>*/}
               <NavItem>
                 <NavLink tag={Link} to="/admin">Admin</NavLink>
               </NavItem>
