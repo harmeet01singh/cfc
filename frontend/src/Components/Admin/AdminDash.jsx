@@ -8,6 +8,11 @@ import { CampaignList, CampaignCreate, CampaignEdit} from './Campaigns';
 import { NewsletterCreate, NewsletterEdit, NewsletterList} from './Newsletter';
 import { FinancialCreate, FinancialEdit, FinancialList} from './Financials';
 import { ReviewList} from './Reviews';
+import { DonationList} from './Donations';
+import { VolunteerList} from './Volunteer';
+import { HandinList} from './Handin';
+import { HelpList} from './Help';
+import { FeedbackList} from './Feedback'; 
 
 const AdminDash = () => {
     return (
@@ -19,11 +24,11 @@ const AdminDash = () => {
             <Resource name='newsletter' list={NewsletterList} create={NewsletterCreate} edit={NewsletterEdit} />
             <Resource name='financials' list={FinancialList} create={FinancialCreate} edit={FinancialEdit} />
             <Resource name='reviews' list={ReviewList} />
-            {/*<Resource name='donations' list={BranchList} create={BranchCreate} edit={BranchEdit} />
-            <Resource name='volunteer' list={BranchList} create={BranchCreate} edit={BranchEdit} />
-            <Resource name='handin' list={BranchList} create={BranchCreate} edit={BranchEdit} />
-            <Resource name='help' list={BranchList} create={BranchCreate} edit={BranchEdit} />
-            <Resource name='feedback' list={BranchList} create={BranchCreate} edit={BranchEdit} />*/}
+            <Resource name='donations' list={DonationList} />
+            <Resource name='volunteer' list={VolunteerList} />
+            <Resource name='handin' list={HandinList}/>
+            <Resource name='help' list={HelpList}/>
+            <Resource name='feedback' list={FeedbackList}/>
         </Admin>
     )
 }
