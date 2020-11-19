@@ -1,28 +1,33 @@
 var express = require('express');
-var blogRouter = express.Router();
-var Blogs = require('../models/blogs');
+var donRouter = express.Router();
+var Donations = require('../models/donations');
 const cors = require('./cors');
 
-blogRouter.route('/')
+donRouter.route('/')
     .options(cors.corsWithOptions, (req, res) => {
         res.sendStatus(200);
     })
     .get(cors.cors, ( req, res, next) => {
-        Blogs.find({})
-        .then((blogs) => {
+        Donations.find({})
+        .then((donations) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json(blogs);
+            res.json(donations);
         }, (err) => next(err))
         .catch((err) => console.log(err));
     })
     .post(( req, res, next) => {
-        Blogs.create(req.body)
-        .then((blog) => {
-            console.log('Blog Created: ', blog)
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json(blog);
+        console.log(req.body);
+        Donations.create(req.body)
+        .then((donation) => {
+            donation.id = donation._id;
+            donation.save()
+            .then((donation) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.setHeader('Content-Range', 'branches 0-20/20');
+                res.json(donation);
+            })
         }, (err) => next(err))
         .catch((err) => next(err));
     })
@@ -32,25 +37,21 @@ blogRouter.route('/')
         res.end('Put method not supported on /blogs');
     })
     .delete(( req, res, next) => {
-        Blogs.remove({})
-        .then((resp) => {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json(resp);
-        }, (err) => next(err))
-        .catch((err) => next(err));
+        res.statusCode = 401;
+        res.setHeader('Content-Type', 'application/json');
+        res.end('Not allowed to delete donations')
     });
 
-blogRouter.route('/:blogId')
+donRouter.route('/:donationId')
     .options(cors.corsWithOptions, (req, res) => {
         res.sendStatus(200);
     })
     .get(cors.cors, ( req, res, next) => {
-        Blogs.findOne(req.params.blogId)
-        .then((blog) => {
+        Donations.findById(req.params.blogId)
+        .then((donation) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json(blog);
+            res.json(donation);
         })
     })
     .post(cors.corsWithOptions, ( req, res, next) => {
@@ -58,19 +59,13 @@ blogRouter.route('/:blogId')
         res.setHeader('Content-Type', 'plain/text');
         res.end('Post method not supported on individual branch');
     })
-    .put(cors.corsWithOptions, ( req, res, next) => {
-        Blogs.findByIdAndUpdate( req.params.blogId, {
-            $set: req.body
-        }, { new: true})
-        .then((blog) => {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json({ message: 'Blog Updated', blog: blog});
-        }, (err) => next(err))
-        .catch((err) => next(err));
+    .put(cors.corsWithOptions, ( req, res, next) => { 
+        res.statusCode = 401;
+        res.setHeader('Content-Type', 'application/json');
+        res.end('Not allowed to delete a donation')
     })
     .delete(cors.corsWithOptions, ( req, res, next) => {
-        Blogs.findByIdAndRemove(req.params.blogId)
+        Donations.findByIdAndRemove(req.params.blogId)
         .then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
@@ -79,4 +74,4 @@ blogRouter.route('/:blogId')
         .catch((err) => next(err));
     });
 
-module.exports = blogRouter;
+module.exports = donRouter;

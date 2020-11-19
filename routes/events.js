@@ -1,9 +1,13 @@
 var express = require('express');
 var eventRouter = express.Router();
 var Events = require('../models/events');
+const cors = require('./cors');
 
 eventRouter.route('/')
-    .get(( req, res, next) => {
+    .options(cors.corsWithOptions, (req, res) => {
+        res.sendStatus(200);
+    })
+    .get(cors.cors, ( req, res, next) => {
         Events.find({})
         .then((event) => {
             res.statusCode = 200;
@@ -12,7 +16,7 @@ eventRouter.route('/')
         }, (err) => next(err))
         .catch((err) => console.log(err));
     })
-    .post(( req, res, next) => {
+    .post(cors.corsWithOptions, ( req, res, next) => {
         Events.create(req.body)
         .then((event) => {
             console.log('Event Created: ', event)
@@ -38,7 +42,7 @@ eventRouter.route('/')
     });
 
 eventRouter.route('/:eventId')
-    .get(( req, res, next) => {
+    .get(cors.cors, ( req, res, next) => {
         Events.findOne(req.params.eventId)
         .then((eve) => {
             res.statusCode = 200;
@@ -46,12 +50,12 @@ eventRouter.route('/:eventId')
             res.json(eve);
         })
     })
-    .post(( req, res, next) => {
+    .post(cors.corsWithOptions, ( req, res, next) => {
         res.statusCode = 401;
         res.setHeader('Content-Type', 'plain/text');
         res.end('Post method not supported on individual event');
     })
-    .put(( req, res, next) => {
+    .put(cors.corsWithOptions, ( req, res, next) => {
         Events.findByIdAndUpdate( req.params.eventId, {
             $set: req.body
         }, { new: true})
@@ -62,7 +66,7 @@ eventRouter.route('/:eventId')
         }, (err) => next(err))
         .catch((err) => next(err));
     })
-    .delete(( req, res, next) => {
+    .delete(cors.corsWithOptions, ( req, res, next) => {
         Events.findByIdAndRemove(req.params.eventId)
         .then((resp) => {
             res.statusCode = 200;
@@ -72,4 +76,4 @@ eventRouter.route('/:eventId')
         .catch((err) => next(err));
     });
 
-module.exports = branchRouter;
+module.exports = eventRouter;
