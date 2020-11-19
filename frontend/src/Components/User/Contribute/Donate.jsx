@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
-export default class Donate extends Component {
+export default class Donate extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();

@@ -16,7 +16,7 @@ export function NewsletterList(props) {
         <List {...props} >
             <Datagrid rowClick="edit">
                 <TextField source='id' />
-                <TextField source='name' />
+                <TextField source='title' />
                 <TextField source='manager' />
                 <TextField source='mail' />
                 <EditButton basePath='/branches' />

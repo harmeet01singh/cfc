@@ -12,38 +12,9 @@ export default function Bloglist(props) {
                 </Breadcrumb>
             </div>
             <div className="container">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Blog Heading</h3>
-                        <p class="card-text">Date, Location</p>
-                        <Form class="btn btn-primary" method="get">
-                            <Button>View Details</Button>
-                        </Form>
-                    </div>
-                </div>
-                <br></br>
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Blog Heading</h3>
-                        <p class="card-text">Date, Location</p>
-                        <Form class="btn btn-primary" method="get">
-                            <Button>View Details</Button>
-                        </Form>
-                    </div>
-                </div>
-                <br></br>
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Blog Heading</h3>
-                        <p class="card-text">Date, Location</p>
-                        <Form class="btn btn-primary" method="get">
-                            <Button>View Details</Button>
-                        </Form>
-                    </div>
-                </div>
-                <br></br>
-                </div>
-            {/*{ props.blogs.map(blog => <div> { blog.title }</div> ) }*/}
+                {/* {props.blogs[0].title} */}
+                { props.blogs.map(blog => <Link to={'/blog/' + blog.id}> { blog.title }</Link> ) }
+            </div>
         </div>
     )
 }

@@ -12,6 +12,8 @@ feedRouter.route('/')
         .then((feedback) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json(feedback);
         }, (err) => next(err))
         .catch((err) => console.log(err));
@@ -24,6 +26,8 @@ feedRouter.route('/')
             .then((feedback) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
+                res.setHeader('Content-Range', 'branches 0-20/20');
+                res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
                 res.setHeader('Content-Range', 'branches 0-20/20');
                 res.json(feedback);
             })

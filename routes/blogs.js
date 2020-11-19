@@ -12,30 +12,40 @@ blogRouter.route('/')
         .then((blogs) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json(blogs);
         }, (err) => next(err))
         .catch((err) => console.log(err));
     })
-    .post(( req, res, next) => {
+    .post(cors.corsWithOptions, ( req, res, next) => {
         Blogs.create(req.body)
         .then((blog) => {
-            console.log('Blog Created: ', blog)
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json(blog);
+            blog.id = blog._id;
+            blog.save()
+            .then(blog => {
+                console.log('Blog Created: ', blog)
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+                res.setHeader('Content-Range', 'branches 0-20/20');
+                res.json(blog);
+            })
         }, (err) => next(err))
         .catch((err) => next(err));
     })
-    .put(( req, res, next) => {
+    .put(cors.corsWithOptions, ( req, res, next) => {
         res.statusCode = 401;
         res.setHeader('Content-Type', 'plain/text');
         res.end('Put method not supported on /blogs');
     })
-    .delete(( req, res, next) => {
+    .delete(cors.corsWithOptions, ( req, res, next) => {
         Blogs.remove({})
         .then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json(resp);
         }, (err) => next(err))
         .catch((err) => next(err));
@@ -50,6 +60,8 @@ blogRouter.route('/:blogId')
         .then((blog) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json(blog);
         })
     })
@@ -65,6 +77,8 @@ blogRouter.route('/:blogId')
         .then((blog) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json({ message: 'Blog Updated', blog: blog});
         }, (err) => next(err))
         .catch((err) => next(err));
@@ -74,6 +88,8 @@ blogRouter.route('/:blogId')
         .then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json(resp);
         }, (err) => next(err))
         .catch((err) => next(err));

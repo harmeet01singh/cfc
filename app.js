@@ -26,7 +26,8 @@ const campRouter = require('./routes/campaigns');
 const eventRouter = require('./routes/events');
 const blogRouter = require('./routes/blogs');
 const feedRouter = require('./routes/feedbacks');
-const fileRouter = require('./routes/newsletters');
+const fileRouter = require('./routes/htffiles');
+const conRouter = require('./routes/contribute');
 
 
 app.use(logger('dev'));
@@ -45,6 +46,7 @@ app.use('/campaigns', campRouter);
 app.use('/events', eventRouter);
 app.use('/blogs', blogRouter);
 app.use('/feedbacks', feedRouter);
+app.use('/contribute', conRouter);
 // app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

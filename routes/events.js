@@ -9,20 +9,24 @@ eventRouter.route('/')
     })
     .get(cors.cors, ( req, res, next) => {
         Events.find({})
-        .then((event) => {
+        .then((events) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json(event);
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
+            res.json(events);
         }, (err) => next(err))
         .catch((err) => console.log(err));
     })
     .post(cors.corsWithOptions, ( req, res, next) => {
         Events.create(req.body)
-        .then((event) => {
-            console.log('Event Created: ', event)
+        .then((eve) => {
+            console.log('Event Created: ', eve)
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json(event);
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
+            res.json(eve);
         }, (err) => next(err))
         .catch((err) => next(err));
     })
@@ -36,6 +40,8 @@ eventRouter.route('/')
         .then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json(resp);
         }, (err) => next(err))
         .catch((err) => next(err));
@@ -47,6 +53,8 @@ eventRouter.route('/:eventId')
         .then((eve) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json(eve);
         })
     })
@@ -59,10 +67,12 @@ eventRouter.route('/:eventId')
         Events.findByIdAndUpdate( req.params.eventId, {
             $set: req.body
         }, { new: true})
-        .then((event) => {
+        .then((eve) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json({ message: 'Branch Updated', event: event});
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
+            res.json({ message: 'Branch Updated', eve: eve});
         }, (err) => next(err))
         .catch((err) => next(err));
     })
@@ -71,6 +81,8 @@ eventRouter.route('/:eventId')
         .then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json(resp);
         }, (err) => next(err))
         .catch((err) => next(err));

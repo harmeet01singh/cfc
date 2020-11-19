@@ -1,13 +1,19 @@
 var express = require('express');
 var campRouter = express.Router();
 var Campaigns = require('../models/campaigns');
+const cors = require('./cors');
 
-campRouter.route('/:branchName')
-    .get(( req, res, next) => {
-        Campaigns.find({ branch: req.params.branchName})
+campRouter.route('/')
+.options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200);
+})
+    .get(cors.cors, ( req, res, next) => {
+        Campaigns.find({})
         .then((campaigns) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'campaigns 0-20/20');
             res.json(campaigns);
         }, (err) => next(err))
         .catch((err) => console.log(err));
@@ -18,56 +24,69 @@ campRouter.route('/:branchName')
             console.log('Campaign Created: ', Campaign)
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'campaigns 0-20/20');
             res.json(campaign);
         }, (err) => next(err))
         .catch((err) => next(err));
     })
-    .put(( req, res, next) => {
+    .put(cors.corsWithOptions, ( req, res, next) => {
         res.statusCode = 401;
         res.setHeader('Content-Type', 'plain/text');
         res.end('Put method not supported on /branches');
     })
-    .delete(( req, res, next) => {
+    .delete(cors.corsWithOptions, ( req, res, next) => {
         Campaigns.remove({})
         .then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'campaigns 0-20/20');
             res.json(resp);
         }, (err) => next(err))
         .catch((err) => next(err));
     });
 
 campRouter.route('/:branchName/:campaignId')
-    .get(( req, res, next) => {
+.options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200);
+})
+    .get(cors.cors, ( req, res, next) => {
         Campaigns.findOne({ _id: req.params.campaignId})
         .then((campaign) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'campaigns 0-20/20');
             res.json(campaign);
         }, (err) => next(err))
         .catch((err) => console.log(err));
     })
-    .post(( req, res, next) => {
+    .post(cors.corsWithOptions, ( req, res, next) => {
         res.statusCode = 401;
         res.setHeader('Content-Type', 'plain/text');
         res.end('Post method not supported on individual branch');
     })
-    .put(( req, res, next) => {
+    .put(cors.corsWithOptions, ( req, res, next) => {
         Campaigns.findByIdAndUpdate( req.params.campaignId, {
             $set: req.body
         }, { new: true})
         .then((campaign) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'campaigns 0-20/20');
             res.json({ message: 'Campaign Updated', campaign: campaign});
         }, (err) => next(err))
         .catch((err) => next(err));
     })
-    .delete(( req, res, next) => {
+    .delete(cors.corsWithOptions, ( req, res, next) => {
         Campaigns.findByIdAndRemove(req.params.campaignId)
         .then((resp) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'campaigns 0-20/20');
             res.json(resp);
         }, (err) => next(err))
         .catch((err) => next(err));

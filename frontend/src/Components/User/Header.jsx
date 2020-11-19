@@ -14,8 +14,8 @@ import {Link} from 'react-router-dom';
 export default function Header() {
     return (
         <div>
-            <Navbar color="dark" dark expand="md">
-            <Nav className="mr-auto" navbar>
+            <Navbar style={{height: '35px'}} color="dark" dark expand="md">
+            <Nav navbar>
             {/*<div className="col-lg-8">*/}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -95,15 +95,15 @@ export default function Header() {
               </NavItem>
               {/*</div>
               <div className="col-lg-4">*/}
-              <NavItem>
+              {/* <NavItem>
                 <NavLink tag={Link} to="#">Register</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} to="#">Log In</NavLink>
-              </NavItem>
+              </NavItem> */}
               {/*</div>*/}
               <NavItem>
-                <NavLink tag={Link} to="/admin">Admin</NavLink>
+                <NavLink className="ml-auto" tag={Link} to="/admin">Admin</NavLink>
               </NavItem>
             </Nav>
         </Navbar>

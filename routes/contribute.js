@@ -15,6 +15,8 @@ conRouter.route('/donations')
         .then((donations) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json(donations);
         }, (err) => next(err))
         .catch((err) => console.log(err));
@@ -27,6 +29,8 @@ conRouter.route('/donations')
             .then((donation) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
+                res.setHeader('Content-Range', 'branches 0-20/20');
+                res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
                 res.setHeader('Content-Range', 'branches 0-20/20');
                 res.json(donation);
             })
@@ -43,6 +47,8 @@ conRouter.route('/handins')
         .then((donations) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json(donations);
         }, (err) => next(err))
         .catch((err) => console.log(err));
@@ -55,6 +61,8 @@ conRouter.route('/handins')
             .then((handin) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
+                res.setHeader('Content-Range', 'branches 0-20/20');
+                res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
                 res.setHeader('Content-Range', 'branches 0-20/20');
                 res.json(handin);
             })
@@ -71,6 +79,8 @@ conRouter.route('/helps')
         .then((help) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json(help);
         }, (err) => next(err))
         .catch((err) => console.log(err));
@@ -83,6 +93,8 @@ conRouter.route('/helps')
             .then((help) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
+                res.setHeader('Content-Range', 'branches 0-20/20');
+                res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
                 res.setHeader('Content-Range', 'branches 0-20/20');
                 res.json(help);
             })
@@ -99,6 +111,8 @@ conRouter.route('/volunteers')
         .then((donations) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
+            res.setHeader('Content-Range', 'branches 0-20/20');
             res.json(donations);
         }, (err) => next(err))
         .catch((err) => console.log(err));
@@ -111,6 +125,8 @@ conRouter.route('/volunteers')
             .then((volunteer) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
+                res.setHeader('Content-Range', 'branches 0-20/20');
+                res.setHeader( 'Access-Control-Expose-Headers', 'Content-Range');
                 res.setHeader('Content-Range', 'branches 0-20/20');
                 res.json(volunteer);
             })
