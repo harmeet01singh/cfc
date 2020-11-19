@@ -2,7 +2,7 @@ import React from 'react';
 import {Breadcrumb, BreadcrumbItem, Row, Col, Card, CardTitle, Button, CardText, Form} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
-export default function Branches() {
+export default function Branches(props) {
     return (
         <div>
             <div >
@@ -34,6 +34,7 @@ export default function Branches() {
                 </Row>
             <br></br>
         </div>
+            { props.branches.map(branch => <h1>{branch.manager}, {branch.name} </h1>)}
         </div>
     )
 }

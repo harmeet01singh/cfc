@@ -2,7 +2,7 @@ import React from 'react';
 import {Breadcrumb, BreadcrumbItem, Row, Col, Card, CardTitle, Button, CardText, Form} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
-export default function Bloglist() {
+export default function Bloglist(props) {
     return (
         <div>
             <div >
@@ -43,6 +43,7 @@ export default function Bloglist() {
                 </div>
                 <br></br>
                 </div>
+            { props.blogs.map(blog => <div> { blog.title }</div> ) }
         </div>
     )
 }

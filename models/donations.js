@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const branchSchema = new Schema({
-    id:{
+const donateSchema = new Schema({
+    id: {
         type: String,
         default: ''
     },
@@ -10,15 +10,15 @@ const branchSchema = new Schema({
         type: String,
         required: true
     },
-    manager: {
+    email: {
         type: String,
         required: true
     },
-    address: {
+    amount: {
         type: String,
         required: true
     },
-    mail: {
+    pan: {
         type: String,
         required: true
     },
@@ -26,16 +26,20 @@ const branchSchema = new Schema({
         type: String,
         required: true
     },
-    image: {
+    address: {
         type: String,
         required: true
     },
-    info: {
+    zip:{
+        type: String,
+        required: true
+    },
+    method: {
         type: String,
         required: true
     }
 });
 
-var Branches = mongoose.model('Branch', branchSchema);
+var Donations = mongoose.model('Donate', donateSchema);
 
-module.exports = Branches; 
+module.exports = Donations; 

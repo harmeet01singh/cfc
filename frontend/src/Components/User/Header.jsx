@@ -102,6 +102,9 @@ export default function Header() {
                 <NavLink tag={Link} to="#">Log In</NavLink>
               </NavItem>
               {/*</div>*/}
+              <NavItem>
+                <NavLink tag={Link} to="/admin">Admin</NavLink>
+              </NavItem>
             </Nav>
         </Navbar>
         </div>
