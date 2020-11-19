@@ -7,14 +7,14 @@ import {Link} from 'react-router-dom';
 
 export default function Newsletter() {
     return (
-        <div className="container">
-            <br></br>
-            <div>
-            <Breadcrumb>
-                <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
-                <BreadcrumbItem active>Newsletters</BreadcrumbItem>
-            </Breadcrumb>
+        <div>
+            <div >
+                <Breadcrumb >
+                    <BreadcrumbItem className="pl-5"><Link to="/">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Newsletter</BreadcrumbItem>
+                </Breadcrumb>
             </div>
+            <div className="container">
             <Row>
                 <Col sm="4">
                     <Card body>
@@ -38,6 +38,8 @@ export default function Newsletter() {
                     </Card>
                 </Col>
             </Row>
+            <br></br>
+        </div>
         </div>
     )
 }
