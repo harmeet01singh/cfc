@@ -43,7 +43,7 @@ export default function Bloglist(props) {
                 </div>
                 <br></br>
                 </div>
-            { props.blogs.map(blog => <div> { blog.title }</div> ) }
+            {/*{ props.blogs.map(blog => <div> { blog.title }</div> ) }*/}
         </div>
     )
 }
